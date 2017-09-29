@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>服务端发送消息</title>
+</head>
+<body>
+	<h1>发送消息</h1><hr>  
+	<select id="type" >   
+		<option selected="selected" value="red">red</option>  
+		<option value="blue">blue</option>
+	</select>
+	<input id="msg">
+	<button id="send" value="发送消息" type="button" title="send">发送</button>
+</body>
+<script type="text/javascript" src="sfile/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#send").click(function() {
+			var type = $("#type").val();
+			var msg = $("#msg").val();
+			$.post('/producer/rabbit/setMessage', {msg : msg, type : type}, function(ret) {
+		         if(ret != null) {
+		             //alert("发送成功");  
+		         } else {
+		         	alert("发送失败");  
+		         }  
+		     }, 'json');
+		});
+	});
+</script>
+</html>
