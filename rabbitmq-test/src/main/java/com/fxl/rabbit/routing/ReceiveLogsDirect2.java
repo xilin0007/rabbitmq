@@ -12,9 +12,9 @@ import com.rabbitmq.client.Envelope;
 
 public class ReceiveLogsDirect2 {
 
-	// ½»»»Æ÷Ãû³Æ
+	// äº¤æ¢å™¨åç§°
 	private static final String EXCHANGE_NAME = "direct_logs";
-	// Â·ÓÉ¹Ø¼ü×Ö  
+	// è·¯ç”±å…³é”®å­—  
     private static final String[] routingKeys = new String[]{"error"};
 
 	public static void main(String[] argv) throws Exception {
@@ -23,11 +23,11 @@ public class ReceiveLogsDirect2 {
 		factory.setHost("localhost");
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
-		// ÉùÃ÷½»»»Æ÷
+		// å£°æ˜äº¤æ¢å™¨
 		channel.exchangeDeclare(EXCHANGE_NAME, "direct");
-		// »ñÈ¡ÄäÃû¶ÓÁĞÃû³Æ
+		// è·å–åŒ¿åé˜Ÿåˆ—åç§°
 		String queueName = channel.queueDeclare().getQueue();
-		// ¸ù¾İÂ·ÓÉ¹Ø¼ü×Ö½øĞĞ¶àÖØ°ó¶¨
+		// æ ¹æ®è·¯ç”±å…³é”®å­—è¿›è¡Œå¤šé‡ç»‘å®š
 		for (String severity : routingKeys) {
 			channel.queueBind(queueName, EXCHANGE_NAME, severity);
 			System.out.println("ReceiveLogsDirect2 exchange:" + EXCHANGE_NAME + ", queue:" + queueName + ", BindRoutingKey:" + severity);

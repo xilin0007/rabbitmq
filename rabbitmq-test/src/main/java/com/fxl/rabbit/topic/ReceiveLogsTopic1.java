@@ -13,7 +13,7 @@ import com.rabbitmq.client.Envelope;
 public class ReceiveLogsTopic1 {
 
 	private static final String EXCHANGE_NAME = "topic_logs";
-	// Â·ÓÉ¹Ø¼ü×Ö
+	// è·¯ç”±å…³é”®å­—
 	private static final String[] routingKeys = new String[] { "*.orange.*" };
 
 	public static void main(String[] argv) throws Exception {
@@ -23,11 +23,11 @@ public class ReceiveLogsTopic1 {
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
 		
-		// ÉùÃ÷Ò»¸öÆ¥ÅäÄ£Ê½µÄ½»»»Æ÷
+		// å£°æ˜ä¸€ä¸ªåŒ¹é…æ¨¡å¼çš„äº¤æ¢å™¨
 		channel.exchangeDeclare(EXCHANGE_NAME, "topic");
 		String queueName = channel.queueDeclare().getQueue();
 		
-		// °ó¶¨Â·ÓÉ¹Ø¼ü×Ö
+		// ç»‘å®šè·¯ç”±å…³é”®å­—
 		for (String bindingKey : routingKeys) {
 			channel.queueBind(queueName, EXCHANGE_NAME, bindingKey);
 			System.out.println("ReceiveLogsTopic1 exchange:" + EXCHANGE_NAME + ", queue:" + queueName + ", BindRoutingKey:" + bindingKey);

@@ -6,7 +6,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 
 /**
- * ¹¤×÷¶ÓÁĞ£¬¸ºÔØ¾ùºâ£¬RabbitMQ½«¶ÓÁĞÏûÏ¢Ëæ»ú·ÖÅä¸øÃ¿¸öÏû·ÑÕß
+ * å·¥ä½œé˜Ÿåˆ—ï¼Œè´Ÿè½½å‡è¡¡ï¼ŒRabbitMQå°†é˜Ÿåˆ—æ¶ˆæ¯éšæœºåˆ†é…ç»™æ¯ä¸ªæ¶ˆè´¹è€…
  */
 public class NewTask {
 
@@ -19,10 +19,10 @@ public class NewTask {
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
 		
-		//¶ÓÁĞÊÇ·ñ³Ö¾Ã»¯
+		//é˜Ÿåˆ—æ˜¯å¦æŒä¹…åŒ–
 		boolean durable = false;
 		channel.queueDeclare(TASK_QUEUE_NAME, durable, false, false, null);
-		// ·Ö·¢ÏûÏ¢
+		// åˆ†å‘æ¶ˆæ¯
 		for (int i = 0; i < 5; i++) {
 			String message = "Hello World! " + i;
 			channel.basicPublish("", TASK_QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());

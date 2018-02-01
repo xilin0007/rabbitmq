@@ -23,7 +23,7 @@ public class Worker2 {
 
 		channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);
 		System.out.println("Worker2 [*] Waiting for messages. To exit press CTRL+C");
-		// 每次从队列中获取数量
+		// 姣忔浠庨槦鍒椾腑鑾峰彇鏁伴噺
 		channel.basicQos(1);
 
 		final Consumer consumer = new DefaultConsumer(channel) {
@@ -36,17 +36,17 @@ public class Worker2 {
 				
 				doWork(message);
 				System.out.println("Worker2 [x] Done");
-				// 消息处理完成确认
+				// 娑堟伅澶勭悊瀹屾垚纭
 				channel.basicAck(envelope.getDeliveryTag(), false);
 			}
 		};
-		// 消息消费完成确认
+		// 娑堟伅娑堣垂瀹屾垚纭
 		channel.basicConsume(TASK_QUEUE_NAME, false, consumer);
 	}
 
 	private static void doWork(String task) {
 		try {
-			Thread.sleep(1000); // 暂停1秒钟
+			Thread.sleep(1000); // 鏆傚仠1绉掗挓
 		} catch (InterruptedException _ignored) {
 			Thread.currentThread().interrupt();
 		}

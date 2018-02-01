@@ -55,7 +55,7 @@ public class RPCClient {
 
 		BasicProperties props = new BasicProperties.Builder().correlationId(corrId).replyTo(replyQueueName).build();
 		channel.basicPublish("", requestQueueName, props, message.getBytes("UTF-8"));
-		//设置调队列中的唯一编号和回调队列名称，循环监听回调队列中的每一个消息，找到与我们刚才发送任务消息编号相同的消息
+		//璁剧疆璋冮槦鍒椾腑鐨勫敮涓�缂栧彿鍜屽洖璋冮槦鍒楀悕绉帮紝寰幆鐩戝惉鍥炶皟闃熷垪涓殑姣忎竴涓秷鎭紝鎵惧埌涓庢垜浠垰鎵嶅彂閫佷换鍔℃秷鎭紪鍙风浉鍚岀殑娑堟伅
 		while (true) {
 			QueueingConsumer.Delivery delivery = consumer.nextDelivery();
 			if (delivery.getProperties().getCorrelationId().equals(corrId)) {

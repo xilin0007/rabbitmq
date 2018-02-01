@@ -5,12 +5,12 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 /**
- * Ä£ºıÆ¥Åä£¬Æ¥Åä(topic)½»»»Æ÷
+ * æ¨¡ç³ŠåŒ¹é…ï¼ŒåŒ¹é…(topic)äº¤æ¢å™¨
  */
 public class TopicSend {
 
 	private static final String EXCHANGE_NAME = "topic_logs";
-	// ´ı·¢ËÍµÄÏûÏ¢
+	// å¾…å‘é€çš„æ¶ˆæ¯
 	private static final String[] routingKeys = new String[] { 
 		"quick.orange.rabbit", 
 		"lazy.orange.elephant", 
@@ -31,10 +31,10 @@ public class TopicSend {
 
 			connection = factory.newConnection();
 			channel = connection.createChannel();
-			// ÉùÃ÷Ò»¸öÆ¥ÅäÄ£Ê½µÄ½»»»Æ÷
+			// å£°æ˜ä¸€ä¸ªåŒ¹é…æ¨¡å¼çš„äº¤æ¢å™¨
 			channel.exchangeDeclare(EXCHANGE_NAME, "topic");
 
-			// ·¢ËÍÏûÏ¢
+			// å‘é€æ¶ˆæ¯
 			for (String severity : routingKeys) {
 				String message = "From " + severity + " routingKey' s message!";
 				channel.basicPublish(EXCHANGE_NAME, severity, null, message.getBytes());

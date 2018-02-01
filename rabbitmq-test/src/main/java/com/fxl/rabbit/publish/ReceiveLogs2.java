@@ -22,9 +22,9 @@ public class ReceiveLogs2 {
 		Channel channel = connection.createChannel();
 
 		channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
-		//´´½¨Ò»¸ö·Ç³Ö¾Ã»¯¡¢¶ÀÁ¢¡¢×Ô¶¯É¾³ıµÄÄäÃû¶ÓÁĞ
+		//åˆ›å»ºä¸€ä¸ªéæŒä¹…åŒ–ã€ç‹¬ç«‹ã€è‡ªåŠ¨åˆ é™¤çš„åŒ¿åé˜Ÿåˆ—
 		String queueName = channel.queueDeclare().getQueue();
-		//¶ÓÁĞ°ó¶¨logs½»»»Æ÷
+		//é˜Ÿåˆ—ç»‘å®šlogsäº¤æ¢å™¨
 		channel.queueBind(queueName, EXCHANGE_NAME, "");
 
 		System.out.println(" [*] Waiting for messages. To exit press CTRL+C");

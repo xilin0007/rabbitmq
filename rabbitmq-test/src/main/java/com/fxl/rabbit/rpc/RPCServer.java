@@ -7,7 +7,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 
 /**
- * rpc£¬Ô¶³Ì·½·¨µ÷ÓÃ
+ * rpcï¼Œè¿œç¨‹æ–¹æ³•è°ƒç”¨
  */
 public class RPCServer {
 
@@ -54,7 +54,7 @@ public class RPCServer {
 		}
 	}
 	
-	//¼ÆËãì³²¨ÄÇÆõÊıÁĞ£¨Fibonacci numbers£©µÄ·½·¨
+	//è®¡ç®—æ–æ³¢é‚£å¥‘æ•°åˆ—ï¼ˆFibonacci numbersï¼‰çš„æ–¹æ³•
 	private static int fib(int n) {
 		if (n == 0)
 			return 0;

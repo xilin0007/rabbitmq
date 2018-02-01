@@ -5,29 +5,29 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 /**
- * Éú²úÕß
+ * ç”Ÿäº§è€…
  */
 public class P {
 
 	private final static String QUEUE_NAME = "hello";
 
 	public static void main(String[] argv) throws Exception {
-		// ´´½¨Á¬½Ó¹¤³§
+		// åˆ›å»ºè¿æ¥å·¥å‚
 		ConnectionFactory factory = new ConnectionFactory();
-		// ÉèÖÃRabbitMQµØÖ·
+		// è®¾ç½®RabbitMQåœ°å€
 		factory.setHost("localhost");
-		// ´´½¨Ò»¸öĞÂµÄÁ¬½Ó
+		// åˆ›å»ºä¸€ä¸ªæ–°çš„è¿æ¥
 		Connection connection = factory.newConnection();
-		// ´´½¨Ò»¸öÆµµÀ
+		// åˆ›å»ºä¸€ä¸ªé¢‘é“
 		Channel channel = connection.createChannel();
-		// ÉùÃ÷Ò»¸ö¶ÓÁĞ --
-		// ÔÚRabbitMQÖĞ£¬¶ÓÁĞÉùÃ÷ÊÇÃİµÈĞÔµÄ£¨Ò»¸öÃİµÈ²Ù×÷µÄÌØµãÊÇÆäÈÎÒâ¶à´ÎÖ´ĞĞËù²úÉúµÄÓ°Ïì¾ùÓëÒ»´ÎÖ´ĞĞµÄÓ°ÏìÏàÍ¬£©£¬Ò²¾ÍÊÇËµ£¬Èç¹û²»´æÔÚ£¬¾Í´´½¨£¬Èç¹û´æÔÚ£¬²»»á¶ÔÒÑ¾­´æÔÚµÄ¶ÓÁĞ²úÉúÈÎºÎÓ°Ïì¡£
+		// å£°æ˜ä¸€ä¸ªé˜Ÿåˆ— --
+		// åœ¨RabbitMQä¸­ï¼Œé˜Ÿåˆ—å£°æ˜æ˜¯å¹‚ç­‰æ€§çš„ï¼ˆä¸€ä¸ªå¹‚ç­‰æ“ä½œçš„ç‰¹ç‚¹æ˜¯å…¶ä»»æ„å¤šæ¬¡æ‰§è¡Œæ‰€äº§ç”Ÿçš„å½±å“å‡ä¸ä¸€æ¬¡æ‰§è¡Œçš„å½±å“ç›¸åŒï¼‰ï¼Œä¹Ÿå°±æ˜¯è¯´ï¼Œå¦‚æœä¸å­˜åœ¨ï¼Œå°±åˆ›å»ºï¼Œå¦‚æœå­˜åœ¨ï¼Œä¸ä¼šå¯¹å·²ç»å­˜åœ¨çš„é˜Ÿåˆ—äº§ç”Ÿä»»ä½•å½±å“ã€‚
 		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 		String message = "Hello World!";
-		// ·¢ËÍÏûÏ¢µ½¶ÓÁĞÖĞ
+		// å‘é€æ¶ˆæ¯åˆ°é˜Ÿåˆ—ä¸­
 		channel.basicPublish("", QUEUE_NAME, null, message.getBytes("UTF-8"));
 		System.out.println("P [x] Sent '" + message + "'");
-		// ¹Ø±ÕÆµµÀºÍÁ¬½Ó
+		// å…³é—­é¢‘é“å’Œè¿æ¥
 		channel.close();
 		connection.close();
 	}

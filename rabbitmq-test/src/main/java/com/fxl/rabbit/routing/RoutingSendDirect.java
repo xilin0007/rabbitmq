@@ -5,12 +5,12 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 /**
- * ÏûÏ¢Â·ÓÉroutingKey£¬Ö±Á¬(direct)½»»»Æ÷
+ * æ¶ˆæ¯è·¯ç”±routingKeyï¼Œç›´è¿(direct)äº¤æ¢å™¨
  */
 public class RoutingSendDirect {
 
 	private static final String EXCHANGE_NAME = "direct_logs";
-	// Â·ÓÉ¹Ø¼ü×Ö
+	// è·¯ç”±å…³é”®å­—
 	private static final String[] routingKeys = new String[] { "info", "warning", "error" };
 
 	public static void main(String[] argv) throws Exception {
@@ -20,9 +20,9 @@ public class RoutingSendDirect {
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
 		
-		// ÉùÃ÷½»»»Æ÷
+		// å£°æ˜äº¤æ¢å™¨
 		channel.exchangeDeclare(EXCHANGE_NAME, "direct");
-		// ·¢ËÍÏûÏ¢
+		// å‘é€æ¶ˆæ¯
 		for (String severity : routingKeys) {
 			String message = "Send the message level:" + severity;
 			channel.basicPublish(EXCHANGE_NAME, severity, null, message.getBytes());

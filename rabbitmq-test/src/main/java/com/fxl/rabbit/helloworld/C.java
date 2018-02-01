@@ -11,26 +11,26 @@ import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 
 /**
- * Ïû·ÑÕß
+ * æ¶ˆè´¹è€…
  */
 public class C {
 
 	private final static String QUEUE_NAME = "hello";
 
 	public static void main(String[] argv) throws Exception {
-		// ´´½¨Á¬½Ó¹¤³§
+		// åˆ›å»ºè¿æ¥å·¥å‚
 		ConnectionFactory factory = new ConnectionFactory();
-		// ÉèÖÃRabbitMQµØÖ·
+		// è®¾ç½®RabbitMQåœ°å€
 		factory.setHost("localhost");
-		// ´´½¨Ò»¸öĞÂµÄÁ¬½Ó
+		// åˆ›å»ºä¸€ä¸ªæ–°çš„è¿æ¥
 		Connection connection = factory.newConnection();
-		// ´´½¨Ò»¸öÆµµÀ
+		// åˆ›å»ºä¸€ä¸ªé¢‘é“
 		Channel channel = connection.createChannel();
-		// ÉùÃ÷Òª¹Ø×¢µÄ¶ÓÁĞ --
-		// ÔÚRabbitMQÖĞ£¬¶ÓÁĞÉùÃ÷ÊÇÃİµÈĞÔµÄ£¨Ò»¸öÃİµÈ²Ù×÷µÄÌØµãÊÇÆäÈÎÒâ¶à´ÎÖ´ĞĞËù²úÉúµÄÓ°Ïì¾ùÓëÒ»´ÎÖ´ĞĞµÄÓ°ÏìÏàÍ¬£©£¬Ò²¾ÍÊÇËµ£¬Èç¹û²»´æÔÚ£¬¾Í´´½¨£¬Èç¹û´æÔÚ£¬²»»á¶ÔÒÑ¾­´æÔÚµÄ¶ÓÁĞ²úÉúÈÎºÎÓ°Ïì¡£
+		// å£°æ˜è¦å…³æ³¨çš„é˜Ÿåˆ— --
+		// åœ¨RabbitMQä¸­ï¼Œé˜Ÿåˆ—å£°æ˜æ˜¯å¹‚ç­‰æ€§çš„ï¼ˆä¸€ä¸ªå¹‚ç­‰æ“ä½œçš„ç‰¹ç‚¹æ˜¯å…¶ä»»æ„å¤šæ¬¡æ‰§è¡Œæ‰€äº§ç”Ÿçš„å½±å“å‡ä¸ä¸€æ¬¡æ‰§è¡Œçš„å½±å“ç›¸åŒï¼‰ï¼Œä¹Ÿå°±æ˜¯è¯´ï¼Œå¦‚æœä¸å­˜åœ¨ï¼Œå°±åˆ›å»ºï¼Œå¦‚æœå­˜åœ¨ï¼Œä¸ä¼šå¯¹å·²ç»å­˜åœ¨çš„é˜Ÿåˆ—äº§ç”Ÿä»»ä½•å½±å“ã€‚
 		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 		System.out.println("C [*] Waiting for messages. To exit press CTRL+C");
-		// DefaultConsumerÀàÊµÏÖÁËConsumer½Ó¿Ú£¬Í¨¹ı´«ÈëÒ»¸öÆµµÀ£¬¸æËß·şÎñÆ÷ÎÒÃÇĞèÒªÄÇ¸öÆµµÀµÄÏûÏ¢£¬Èç¹ûÆµµÀÖĞÓĞÏûÏ¢£¬¾Í»áÖ´ĞĞ»Øµ÷º¯ÊıhandleDelivery
+		// DefaultConsumerç±»å®ç°äº†Consumeræ¥å£ï¼Œé€šè¿‡ä¼ å…¥ä¸€ä¸ªé¢‘é“ï¼Œå‘Šè¯‰æœåŠ¡å™¨æˆ‘ä»¬éœ€è¦é‚£ä¸ªé¢‘é“çš„æ¶ˆæ¯ï¼Œå¦‚æœé¢‘é“ä¸­æœ‰æ¶ˆæ¯ï¼Œå°±ä¼šæ‰§è¡Œå›è°ƒå‡½æ•°handleDelivery
 		Consumer consumer = new DefaultConsumer(channel) {
 			@Override
 			public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties,
@@ -39,7 +39,7 @@ public class C {
 				System.out.println("C [x] Received '" + message + "'");
 			}
 		};
-		// ×Ô¶¯»Ø¸´¶ÓÁĞÓ¦´ğ -- RabbitMQÖĞµÄÏûÏ¢È·ÈÏ»úÖÆ£¬ºóÃæÕÂ½Ú»áÏêÏ¸½²½â
+		// è‡ªåŠ¨å›å¤é˜Ÿåˆ—åº”ç­” -- RabbitMQä¸­çš„æ¶ˆæ¯ç¡®è®¤æœºåˆ¶ï¼Œåé¢ç« èŠ‚ä¼šè¯¦ç»†è®²è§£
 		channel.basicConsume(QUEUE_NAME, true, consumer);
 	}
 

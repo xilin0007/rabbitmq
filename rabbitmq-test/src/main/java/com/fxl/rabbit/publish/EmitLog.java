@@ -5,7 +5,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 /**
- * ·¢²¼/¶©ÔÄ £¬fanout(·Ö·¢)½»»»Æ÷
+ * å‘å¸ƒ/è®¢é˜… ï¼Œfanout(åˆ†å‘)äº¤æ¢å™¨
  */
 public class EmitLog {
 	
@@ -20,7 +20,7 @@ public class EmitLog {
 
 		channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 
-		// ·Ö·¢ÏûÏ¢
+		// åˆ†å‘æ¶ˆæ¯
 		for (int i = 0; i < 5; i++) {
 			String message = "Hello World! " + i;
 			channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
