@@ -21,7 +21,7 @@ public class Worker1 {
 		final Connection connection = factory.newConnection();
 		final Channel channel = connection.createChannel();
 
-		channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);
+		channel.queueDeclare(TASK_QUEUE_NAME, false, false, false, null);
 		System.out.println("Worker1 [*] Waiting for messages. To exit press CTRL+C");
 		// 每次从队列中获取数量
 		channel.basicQos(1);

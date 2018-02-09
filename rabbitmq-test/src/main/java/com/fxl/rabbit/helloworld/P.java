@@ -5,7 +5,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 /**
- * 生产者
+ * 生产者：发送消息
  */
 public class P {
 

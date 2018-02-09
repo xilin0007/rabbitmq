@@ -11,7 +11,7 @@ import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 
 /**
- * 消费者
+ * 消费者：接收消息
  */
 public class C {
 
@@ -39,7 +39,7 @@ public class C {
 				System.out.println("C [x] Received '" + message + "'");
 			}
 		};
-		// 自动回复队列应答 -- RabbitMQ中的消息确认机制，后面章节会详细讲解
+		// 自动回复队列应答 -- RabbitMQ中的消息确认机制
 		channel.basicConsume(QUEUE_NAME, true, consumer);
 	}
 

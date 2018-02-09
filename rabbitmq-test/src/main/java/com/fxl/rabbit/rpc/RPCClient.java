@@ -8,6 +8,9 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 
+/**
+ * rpc，远程方法调用，消费端远程调用服务端提供的方法
+ */
 public class RPCClient {
 
 	private Connection connection;
@@ -52,7 +55,10 @@ public class RPCClient {
 	public String call(String message) throws Exception {
 		String response = null;
 		String corrId = UUID.randomUUID().toString();
-
+		/**
+		 * replyTo，表示回调队列的名称
+		 * correlationId，表示请求任务的唯一编号，用来区分不同请求的返回结果
+		 */
 		BasicProperties props = new BasicProperties.Builder().correlationId(corrId).replyTo(replyQueueName).build();
 		channel.basicPublish("", requestQueueName, props, message.getBytes("UTF-8"));
 		//设置调队列中的唯一编号和回调队列名称，循环监听回调队列中的每一个消息，找到与我们刚才发送任务消息编号相同的消息

@@ -7,7 +7,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 
 /**
- * rpc，远程方法调用
+ * rpc，远程方法调用，服务端提供方法给消费端远程调用
  */
 public class RPCServer {
 
